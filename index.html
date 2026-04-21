@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arena Bohaterów — Aktywizujemy. Wspieramy. Działamy.</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #1B2A6B;
+    --navy2: #0f1d52;
+    --red: #C0392B;
+    --red2: #a93226;
+    --white: #ffffff;
+    --light: #f4f6fb;
+    --gray: #666;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Open Sans', sans-serif; color: #222; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 999;
+    background: rgba(27,42,107,0.97); backdrop-filter: blur(12px);
+    padding: 0 50px; height: 70px; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 2px solid rgba(192,57,43,0.4);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .nav-logo img { height: 44px; }
+  .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 16px; color: white; letter-spacing: 1px; line-height: 1.2; }
+  .nav-logo-text span { color: var(--red); display: block; font-size: 11px; font-weight: 600; letter-spacing: 2px; }
+  nav ul { list-style: none; display: flex; gap: 32px; align-items: center; }
+  nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; transition: color 0.2s; text-transform: uppercase; }
+  nav a:hover { color: var(--red); }
+  .nav-cta { background: var(--red) !important; color: white !important; padding: 10px 24px; border-radius: 4px; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--red2) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; padding-top: 70px;
+    background: linear-gradient(160deg, var(--navy2) 0%, var(--navy) 50%, #2d1a3e 100%);
+    display: flex; align-items: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; right: -10%;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(192,57,43,0.15) 0%, transparent 70%);
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -20%; left: -5%;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+  }
+  .hero-inner { max-width: 1200px; margin: 0 auto; padding: 80px 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+  .hero-left {}
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.5); color: rgba(255,255,255,0.9); padding: 6px 16px; border-radius: 3px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px; }
+  .hero h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(36px, 4.5vw, 58px); color: white; line-height: 1.1; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .line-red { color: var(--red); display: block; }
+  .hero-tagline { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 32px; }
+  .hero p { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 40px; max-width: 480px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-red { background: var(--red); color: white; padding: 15px 34px; border-radius: 4px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.5px; transition: background 0.2s, transform 0.2s; text-transform: uppercase; }
+  .btn-red:hover { background: var(--red2); transform: translateY(-2px); }
+  .btn-ghost { border: 2px solid rgba(255,255,255,0.4); color: white; padding: 15px 34px; border-radius: 4px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.5px; transition: all 0.2s; text-transform: uppercase; }
+  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); }
+  .hero-right { display: flex; flex-direction: column; gap: 16px; }
+  .hero-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 22px 24px; display: flex; align-items: flex-start; gap: 16px; backdrop-filter: blur(4px); transition: background 0.2s; }
+  .hero-card:hover { background: rgba(255,255,255,0.1); }
+  .hc-icon { width: 36px; height: 36px; flex-shrink: 0; margin-top: 2px; display:flex; align-items:center; justify-content:center; }
+  .hc-icon svg { width: 28px; height: 28px; }
+  .hc-title { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: white; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .hc-text { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+  /* STRIP */
+  .strip { background: var(--red); padding: 18px 50px; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
+  .strip-item { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 3px; color: white; text-transform: uppercase; }
+  .strip-item::before { content: '— '; opacity: 0.6; }
+
+  /* WARTOŚCI */
+  .values { background: var(--light); padding: 90px 50px; }
+  .section-label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--red); text-transform: uppercase; text-align: center; margin-bottom: 12px; }
+  .section-title { font-family: 'Montserrat', sans-serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 900; text-align: center; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 14px; }
+  .section-sub { text-align: center; color: var(--gray); font-size: 16px; max-width: 560px; margin: 0 auto 60px; line-height: 1.7; }
+  .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .val-card { background: white; border-radius: 8px; padding: 32px 24px; text-align: center; border-top: 3px solid transparent; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+  .val-card:hover { border-top-color: var(--red); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(27,42,107,0.12); }
+  .val-icon { width: 48px; height: 48px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
+  .val-icon svg { width: 40px; height: 40px; }
+  .val-title { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800; color: var(--navy); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+  .val-text { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+  /* MISJA */
+  .mission { background: var(--navy); padding: 100px 50px; }
+  .mission-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .mission-left {}
+  .mission-left .section-label { text-align: left; }
+  .mission-left .section-title { text-align: left; color: white; }
+  .mission-quote { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; color: var(--red); font-style: italic; line-height: 1.5; margin: 28px 0; border-left: 4px solid var(--red); padding-left: 20px; }
+  .mission-text { color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.9; margin-bottom: 20px; }
+  .mission-right { display: flex; flex-direction: column; gap: 20px; }
+  .mission-point { display: flex; gap: 16px; align-items: flex-start; }
+  .mp-num { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 900; color: rgba(192,57,43,0.3); line-height: 1; flex-shrink: 0; width: 48px; }
+  .mp-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .mp-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* DOŁĄCZ */
+  .join { background: var(--light); padding: 90px 50px; }
+  .join-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1000px; margin: 0 auto; }
+  .join-card { background: white; border-radius: 8px; padding: 40px 30px; text-align: center; box-shadow: 0 2px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+  .join-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--navy); transition: background 0.3s; }
+  .join-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(27,42,107,0.15); }
+  .join-card:hover::before { background: var(--red); }
+  .jc-icon { width: 56px; height: 56px; margin: 0 auto 16px; display:flex; align-items:center; justify-content:center; background: var(--light); border-radius: 12px; }
+  .jc-icon svg { width: 28px; height: 28px; }
+  .jc-title { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+  .jc-text { color: var(--gray); font-size: 14px; line-height: 1.7; margin-bottom: 24px; }
+  .btn-navy { display: inline-block; background: var(--navy); color: white; padding: 12px 28px; border-radius: 4px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; transition: background 0.2s; }
+  .btn-navy:hover { background: var(--navy2); }
+
+  /* STATS */
+  .stats { background: var(--navy2); padding: 70px 50px; display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 900; color: white; line-height: 1; }
+  .stat-num span { color: var(--red); }
+  .stat-label { color: rgba(255,255,255,0.55); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
+
+  /* KONTAKT */
+  .contact { background: white; padding: 90px 50px; }
+  .contact-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: start; }
+  .contact-left .section-label { text-align: left; }
+  .contact-left .section-title { text-align: left; }
+  .contact-info { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .ci-item { display: flex; align-items: center; gap: 14px; }
+  .ci-icon { width: 42px; height: 42px; background: var(--light); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .ci-icon svg { width: 20px; height: 20px; }
+  .ci-label { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 1px; }
+  .ci-value { font-size: 15px; color: var(--navy); font-weight: 600; }
+  form { display: flex; flex-direction: column; gap: 14px; }
+  form input, form textarea, form select {
+    padding: 14px 16px; border: 2px solid #e8ecf4; border-radius: 6px;
+    font-size: 14px; font-family: 'Open Sans', sans-serif; color: #222;
+    transition: border-color 0.2s; background: var(--light);
+  }
+  form input:focus, form textarea:focus, form select:focus { outline: none; border-color: var(--navy); background: white; }
+  form textarea { height: 120px; resize: none; }
+  form select { color: #666; }
+  form button {
+    background: var(--red); color: white; border: none; padding: 16px;
+    border-radius: 6px; font-family: 'Montserrat', sans-serif; font-weight: 800;
+    font-size: 14px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  form button:hover { background: var(--red2); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer { background: var(--navy2); padding: 40px 50px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  .footer-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 18px; color: white; letter-spacing: 1px; }
+  .footer-logo span { color: var(--red); }
+  .footer-tagline { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .footer-copy { color: rgba(255,255,255,0.35); font-size: 12px; text-align: right; }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-right { display: none; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .mission-inner { grid-template-columns: 1fr; }
+    .join-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .contact-inner { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-copy { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div style="width:44px;height:44px;background:var(--red);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>
+    </div>
+    <div class="nav-logo-text">ARENA BOHATERÓW<span>Aktywizujemy · Wspieramy · Działamy</span></div>
+  </a>
+  <ul>
+    <li><a href="#wartosci">O nas</a></li>
+    <li><a href="#misja">Misja</a></li>
+    <li><a href="#dolacz">Dołącz</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="nav-cta">Wesprzyj nas</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">&#x25C6; Fundacja</div>
+      <h1>ARENA<br><span class="line-red">BOHATERÓW</span></h1>
+      <div class="hero-tagline">Aktywizujemy · Wspieramy · Działamy</div>
+      <p>To miejsce, w którym spotykają się ludzie z doświadczeniem i ludzie z energią. Łączymy pokolenia — bo razem jesteśmy silniejsi. Bo każdy może być bohaterem.</p>
+      <div class="hero-btns">
+        <a href="#dolacz" class="btn-red">Dołącz do nas</a>
+        <a href="#misja" class="btn-ghost">Nasza misja</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="hc-title">Łączymy pokolenia</div>
+          <div class="hc-text">Seniorzy dają wiedzę i doświadczenie. Młodzież wnosi świeżość i pomysły. Razem tworzą coś wyjątkowego.</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div>
+          <div class="hc-title">Bez barier</div>
+          <div class="hc-text">Wspieramy weteranów, seniorów, wychowanków domów dziecka, osoby z autyzmem, depresją i bezdomnych.</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div>
+          <div class="hc-title">Wspólna arena</div>
+          <div class="hc-text">Tworzymy przestrzeń do spotkań, kursów, eventów i inicjatyw — dla każdego, kto chce działać.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item">Łączymy pokolenia</div>
+  <div class="strip-item">Wsparcie i relacje</div>
+  <div class="strip-item">Rozwój i innowacje</div>
+  <div class="strip-item">Wspólna arena</div>
+  <div class="strip-item">Aktywizacja</div>
+  <div class="strip-item">Razem silniejsi</div>
+</div>
+
+<!-- WARTOŚCI -->
+<section class="values" id="wartosci">
+  <div class="section-label">Kim jesteśmy</div>
+  <h2 class="section-title">Nasze wartości</h2>
+  <p class="section-sub">To nie jest zwykła fundacja. To wspólnota ludzi, którzy chcą coś zmienić — dla siebie i dla innych.</p>
+  <div class="values-grid">
+    <div class="val-card">
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="val-title">Łączymy pokolenia</div>
+      <div class="val-text">Seniorzy i młodzież — razem uczą się, inspirują i wspierają bez podziałów i barier.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div class="val-title">Wsparcie i relacje</div>
+      <div class="val-text">Budujemy prawdziwe relacje i przeciwdziałamy samotności — bo każdy potrzebuje kogoś obok.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <div class="val-title">Rozwój i innowacje</div>
+      <div class="val-text">Rozwijamy umiejętności, wspieramy nowe pomysły i motywujemy do działania każdego dnia.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+      <div class="val-title">Wspólna arena</div>
+      <div class="val-text">Tworzymy otwartą przestrzeń do spotkań, inicjatyw i wydarzeń — dla wszystkich, na równych zasadach.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div class="val-title">Aktywizacja</div>
+      <div class="val-text">Aktywizujemy i motywujemy do działania osoby wykluczone — zawodowo, społecznie i cyfrowo.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="val-title">Razem silniejsi</div>
+      <div class="val-text">Wierzymy, że każdy człowiek ma coś cennego do dania i zasługuje na drugą szansę.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      <div class="val-title">Pomysły i rozwój</div>
+      <div class="val-text">Bezpłatne kursy zawodowe, warsztaty i mentoring dla tych, którzy potrzebują nowego startu.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+      <div class="val-title">Wspólny cel</div>
+      <div class="val-text">Zmiana zaczyna się od małych kroków. Nasz cel to lepsze życie każdego, komu pomagamy.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISJA -->
+<section class="mission" id="misja">
+  <div class="mission-inner">
+    <div class="mission-left">
+      <div class="section-label">Nasza misja</div>
+      <h2 class="section-title">Każdy może być bohaterem</h2>
+      <div class="mission-quote">"To miejsce, w którym spotykają się ludzie z doświadczeniem i ludzie z energią."</div>
+      <p class="mission-text">Łączymy pokolenia, bo wierzymy, że każdy ma coś wartościowego do przekazania. Seniorzy wnoszą wiedzę, życiowe doświadczenie i spokój. Młodzież — świeże spojrzenie, pomysły i chęć działania.</p>
+      <p class="mission-text">Tworzymy przestrzeń, w której jedni uczą się od drugich, wspierają się i działają razem. Bez podziałów. Bez barier. Na równych zasadach.</p>
+    </div>
+    <div class="mission-right">
+      <div class="mission-point">
+        <div class="mp-num">01</div>
+        <div>
+          <div class="mp-title">Budujemy relacje</div>
+          <div class="mp-text">Przeciwdziałamy samotności i wykluczeniu — tworzymy autentyczne więzi między ludźmi w różnym wieku i z różnych środowisk.</div>
+        </div>
+      </div>
+      <div class="mission-point">
+        <div class="mp-num">02</div>
+        <div>
+          <div class="mp-title">Aktywizujemy i motywujemy</div>
+          <div class="mp-text">Dajemy narzędzia, wiedzę i energię do działania — kursy zawodowe, warsztaty i programy rozwoju osobistego.</div>
+        </div>
+      </div>
+      <div class="mission-point">
+        <div class="mp-num">03</div>
+        <div>
+          <div class="mp-title">Rozwijamy umiejętności</div>
+          <div class="mp-text">Wspieramy nowe pomysły i pomagamy zdobyć zawód — szczególnie wychowankom domów dziecka i osobom bezdomnym.</div>
+        </div>
+      </div>
+      <div class="mission-point">
+        <div class="mp-num">04</div>
+        <div>
+          <div class="mp-title">Tworzymy wspólnotę</div>
+          <div class="mp-text">Arena Bohaterów to nie instytucja — to żywa wspólnota ludzi, którzy wierzą, że razem można zmienić świat.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">500<span>+</span></div><div class="stat-label">Osób objętych pomocą</div></div>
+  <div class="stat"><div class="stat-num">120<span>+</span></div><div class="stat-label">Eventów i kursów</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Grup beneficjentów</div></div>
+  <div class="stat"><div class="stat-num">5<span> lat</span></div><div class="stat-label">Działalności</div></div>
+</div>
+
+<!-- DOŁĄCZ -->
+<section class="join" id="dolacz">
+  <div class="section-label">Działaj razem z nami</div>
+  <h2 class="section-title">Jak możesz pomóc?</h2>
+  <p class="section-sub">Każda forma zaangażowania ma znaczenie. Wybierz swoją drogę i zostań bohaterem czyjejś historii.</p>
+  <div class="join-grid">
+    <div class="join-card">
+      <div class="jc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+      <div class="jc-title">Wesprzyj finansowo</div>
+      <div class="jc-text">Twoja darowizna finansuje kursy, eventy i codzienną pomoc dla potrzebujących. Nawet małe kwoty robią wielką różnicę.</div>
+      <a href="#kontakt" class="btn-navy">Wpłać darowiznę</a>
+    </div>
+    <div class="join-card">
+      <div class="jc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div class="jc-title">Zostań wolontariuszem</div>
+      <div class="jc-text">Twój czas, umiejętności i energia są bezcenne. Dołącz do naszego zespołu i działaj razem z nami w terenie.</div>
+      <a href="#kontakt" class="btn-navy">Zgłoś się</a>
+    </div>
+    <div class="join-card">
+      <div class="jc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="jc-title">Partnerstwo firmowe</div>
+      <div class="jc-text">Współpracuj z nami — sponsoring eventów, CSR, kursy zawodowe dla beneficjentów lub staże i zatrudnienie.</div>
+      <a href="#kontakt" class="btn-navy">Napisz do nas</a>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact" id="kontakt">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="section-label">Kontakt</div>
+      <h2 class="section-title">Skontaktuj się z nami</h2>
+      <div class="contact-info">
+        <div class="ci-item">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="ci-label">Email</div><div class="ci-value">kontakt@arena-bohaterow.pl</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.59 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l1.63-1.63a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div class="ci-label">Telefon</div><div class="ci-value">+48 000 000 000</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="ci-label">Siedziba</div><div class="ci-value">Warszawa, Polska</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <div><div class="ci-label">Darowizny — konto bankowe</div><div class="ci-value">PL00 0000 0000 0000 0000 0000 0000</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <!-- ACTION: zastąp YOUR_FORM_ID kodem z Formspree -->
+      <form action="https://formspree.io/f/xpqkjbod" method="POST">
+        <input type="text" name="name" placeholder="Imię i nazwisko" required>
+        <input type="email" name="email" placeholder="Adres e-mail" required>
+        <input type="tel" name="phone" placeholder="Telefon (opcjonalnie)">
+        <select name="temat">
+          <option value="" disabled selected>Temat zgłoszenia</option>
+          <option>Chcę zostać wolontariuszem</option>
+          <option>Potrzebuję pomocy</option>
+          <option>Partnerstwo / współpraca firmy</option>
+          <option>Darowizna / wsparcie finansowe</option>
+          <option>Inne</option>
+        </select>
+        <textarea name="message" placeholder="Twoja wiadomość..." required></textarea>
+        <input type="hidden" name="_subject" value="Nowe zgłoszenie — Arena Bohaterów">
+        <button type="submit">Wyślij zgłoszenie →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">ARENA <span>BOHATERÓW</span></div>
+    <div class="footer-tagline">Aktywizujemy · Wspieramy · Działamy</div>
+  </div>
+  <div class="footer-copy">© 2025 Fundacja Arena Bohaterów<br>Wszelkie prawa zastrzeżone</div>
+</footer>
+
+</body>
+</html>
