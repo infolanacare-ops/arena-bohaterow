@@ -1,0 +1,6 @@
+# robots.txt - arena-bohaterow.pl (Fundacja)
+
+User-agent: *
+Allow: /
+
+Sitemap: https://arena-bohaterow.pl/sitemap.xml
